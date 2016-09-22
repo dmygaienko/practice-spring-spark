@@ -3,11 +3,15 @@ package service;
 import config.GeneralConfig;
 import org.apache.spark.api.java.JavaRDD;
 import org.apache.spark.api.java.JavaSparkContext;
+import org.apache.spark.sql.Dataset;
+import org.apache.spark.sql.Row;
+import org.apache.spark.sql.SQLContext;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import scala.tools.nsc.typechecker.StructuredTypeStrings;
 
 import java.util.Arrays;
 import java.util.List;
@@ -31,6 +35,13 @@ public class PopularWorldServiceTest {
         List<String> strings = service.topX(rdd, 2);
 
         System.out.println(strings);
+    }
+
+    @Test
+    public void test() throws Exception {
+        JavaRDD<String> rdd = sc.parallelize(Arrays.asList("java java scala groovy java"));
+        SQLContext sqlContext = new SQLContext(sc);
+        Dataset<Row> dataFrame = sqlContext.createDataFrame(rdd, StructuredTypeStrings.class);
     }
 
 }
