@@ -5,6 +5,7 @@ import org.apache.spark.api.java.function.Function;
 
 /**
  * http://spark.apache.org/docs/latest/
+ * http://spark.apache.org/docs/latest/programming-guide.html
  *
  * Created by dmygaenko on 22/09/2016.
  */
