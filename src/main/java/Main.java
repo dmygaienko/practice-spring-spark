@@ -4,6 +4,8 @@ import org.apache.spark.api.java.JavaSparkContext;
 import org.apache.spark.api.java.function.Function;
 
 /**
+ * http://spark.apache.org/docs/latest/
+ *
  * Created by dmygaenko on 22/09/2016.
  */
 public class Main {
@@ -13,7 +15,6 @@ public class Main {
         conf.setAppName("my spark application");
         conf.setMaster("local[*]");
         JavaSparkContext sc = new JavaSparkContext(conf);
-
 
         JavaRDD<String> logData = sc.textFile("data/someFile.txt").cache();
 
