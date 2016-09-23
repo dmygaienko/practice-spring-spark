@@ -16,6 +16,8 @@ import scala.tools.nsc.typechecker.StructuredTypeStrings;
 import java.util.Arrays;
 import java.util.List;
 
+import static org.junit.Assert.assertTrue;
+
 /**
  * Created by dmygaenko on 22/09/2016.
  */
@@ -31,10 +33,10 @@ public class PopularWorldServiceTest {
 
     @Test
     public void topX() throws Exception {
-        JavaRDD<String> rdd = sc.parallelize(Arrays.asList("java java scala groovy java"));
+        JavaRDD<String> rdd = sc.parallelize(Arrays.asList("java java scala scala groovy java"));
         List<String> strings = service.topX(rdd, 2);
 
-        System.out.println(strings);
+        assertTrue(strings.containsAll(Arrays.asList("java", "scala")));
     }
 
     @Test

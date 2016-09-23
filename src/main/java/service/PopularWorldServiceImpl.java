@@ -4,6 +4,7 @@ import org.apache.spark.api.java.JavaRDD;
 import org.springframework.stereotype.Service;
 import scala.Tuple2;
 
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -15,7 +16,7 @@ public class PopularWorldServiceImpl implements PopularWorldService {
     @Override
     public List<String> topX(JavaRDD<String> lines, int x) {
         return lines.map(String::toLowerCase)
-              /*  .flatMap((line) -> line.split(" "))*/
+                .flatMap((line) -> Arrays.asList(line.split(" ")).iterator())
                 .mapToPair((word) -> new Tuple2<>(word, 1))
                 .reduceByKey(Integer::sum)
                 .mapToPair(Tuple2::swap)
